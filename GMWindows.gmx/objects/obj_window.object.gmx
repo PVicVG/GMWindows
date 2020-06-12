@@ -144,6 +144,7 @@ if global.win_in_focus == id
     if (mouse_check_button_pressed(mb_left) &amp;&amp; can_close)
     {
         fading = 1;
+        global.win_in_focus = -1;
         exit;
     }    
 }
@@ -261,9 +262,16 @@ image_yscale = window_height;
     // Set Focus to Self
         if (mouse_check_button(mb_left) &amp;&amp; mouse_inside &amp;&amp; global.win_in_focus != id)
         {
-            if ((global.win_in_focus.mouse_inside == false) &amp;&amp; (global.win_in_focus.held == false) &amp;&amp; (global.win_in_focus.resizing == false))
+            if (global.win_in_focus != -1)
             {
-                global.win_in_focus = id;
+                if ((global.win_in_focus.mouse_inside == false) &amp;&amp; (global.win_in_focus.held == false) &amp;&amp; (global.win_in_focus.resizing == false))
+                {
+                    global.win_in_focus = id;
+                }
+            }
+            else
+            {
+                 global.win_in_focus = id;
             }
         }
 </string>
