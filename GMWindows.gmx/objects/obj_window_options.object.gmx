@@ -48,7 +48,35 @@
         var i;
         for (i = 1; i &lt; (option_max + 1); i += 1)
            {
-            draw_text(x + 4, y + 10 + (i * 10), string(option[i]));
+           
+           // Vars
+                var option_highlighted;
+                option_highlighted = false;
+           
+           // Check if mouse is inside position to set it highlighted.
+                if ((mouse_inside_x == true) &amp;&amp; (mouse_y &gt; (y + 10 + (i * 10) + 2)) &amp;&amp; (mouse_y &lt; (y + 10 + (i * 10) + 10 + 2)) &amp;&amp; (global.win_in_focus == id) &amp;&amp; (resizing == false) &amp;&amp; (held == false))
+                {
+                    option_highlighted = true;
+                }
+
+            // Set Drawing Colors
+                if (option_highlighted)
+                {
+                    draw_set_alpha(0.2)
+                    draw_set_color(c_black)
+                    draw_rectangle(x, y + 10 + (i * 10) + 2, x + window_width, (y + 10 + (i * 10) + 10 + 2), false)
+                    
+                    draw_set_alpha(1)
+                    draw_set_color(c_yellow);
+                }
+                else
+                {
+                    draw_set_color(c_white);
+                }
+            
+            // Option Text;
+                draw_text(x + 4, y + 10 + (i * 10), string(option[i]));
+           
            }
 
     // Reset Alpha

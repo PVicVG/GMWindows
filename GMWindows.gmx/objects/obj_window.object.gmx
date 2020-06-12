@@ -242,58 +242,6 @@ image_yscale = window_height;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Focus
-    // Set Depth
-        if (global.win_in_focus = id)
-        {
-            if depth != -9999
-            {
-                depth = -9999;
-            }
-        }
-        else
-        {
-            if (depth != 0)
-            {
-                depth = 0;
-            }
-        }
-        
-    // Set Focus to Self
-        if (mouse_check_button(mb_left) &amp;&amp; mouse_inside &amp;&amp; global.win_in_focus != id)
-        {
-            if (global.win_in_focus != -1)
-            {
-                if ((global.win_in_focus.mouse_inside == false) &amp;&amp; (global.win_in_focus.held == false) &amp;&amp; (global.win_in_focus.resizing == false))
-                {
-                    global.win_in_focus = id;
-                }
-            }
-            else
-            {
-                 global.win_in_focus = id;
-            }
-        }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Resize Windows
     // Handle
         if (resizing)
@@ -433,6 +381,63 @@ image_yscale = window_height;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Focus
+    // Set Depth
+        if (global.win_in_focus = id)
+        {
+            if depth != -9999
+            {
+                depth = -9999;
+            }
+        }
+        else
+        {
+            if (depth != 0)
+            {
+                depth = 0;
+            }
+        }
+     // Click Outside of Window, set the focus.
+        if (global.win_in_focus == id &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !mouse_inside &amp;&amp; !resizing &amp;&amp; !held)
+        {
+            global.win_in_focus = -1;
+        }
+        
+    // Set Focus to Self
+        if (mouse_check_button_pressed(mb_left) &amp;&amp; mouse_inside &amp;&amp; global.win_in_focus != id)
+        {
+            if (global.win_in_focus != -1)
+            {
+                if ((global.win_in_focus.mouse_inside == false) &amp;&amp; (global.win_in_focus.held == false) &amp;&amp; (global.win_in_focus.resizing == false))
+                {
+                    global.win_in_focus = id;
+                }
+            }
+            else
+            {
+                 global.win_in_focus = id;
+            }
+        }
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -457,25 +462,68 @@ image_yscale = window_height;
         draw_set_font(fnt_interface)
         
     // Draw Window        
-        draw_set_color(c_gray)
+        
+        // Window Color
+            if (global.win_in_focus == id)
+            {
+                draw_set_color(make_color_rgb(185, 181, 195)); // Gray
+            }
+            else
+            {
+                draw_set_color(make_color_rgb(159, 156, 168)); // Dark Gray.
+            }
+        
+        // Window Rectangle.
             draw_rectangle(x,y,x + window_width* window_scale, y + window_height* window_scale, 0)
-            
-        draw_set_color(c_white)
+        
+        // Window Outline    
+            draw_set_color(make_color_rgb(242, 242, 240)); // White
             draw_rectangle(x,y,x + window_width* window_scale, y + window_height* window_scale, 1)
     
     // Draw Window Top
-        draw_set_color(c_aqua)
+        draw_set_color(make_color_rgb(69, 161, 222)); // Aqua
             draw_rectangle(x,y,x + window_width * window_scale, y + window_topbar_height* window_scale, 0)
     
-        draw_set_color(c_blue)
+        draw_set_color(make_colour_rgb(69, 65, 148)); // Blue
             draw_rectangle(x,y,x + window_width * window_scale, y + window_topbar_height* window_scale, 1)
     
     // Draw Icon And Text
-        draw_set_color(c_black)
+        draw_set_color(make_colour_rgb(35, 33, 61)); // Black
             draw_sprite_ext(spr_window_close_icon, can_close, x - 4 + window_width * window_scale, y + 2, window_scale, window_scale, 0, c_white, window_scale)
             draw_sprite_ext(spr_window_icons, window_icon, x + 4, y + 2, window_scale, window_scale, 0, c_white, window_scale)
             draw_text(x + 18,y + 1,window_name)
         
+    // Draw Lines depending on resize direction
+        if (resizing)
+        {
+            // Color
+                draw_set_color(c_lime);
+            
+            // Left
+                if (resizing_dir = DIR_LEFT)
+                {    
+                    draw_line(x, y, x, y + (window_height * window_scale));
+                }
+                
+            // Right
+                if (resizing_dir = DIR_RIGHT)
+                {    
+                    draw_line(x + (window_width * window_scale), y, x + (window_width * window_scale), y + (window_height * window_scale));
+                }
+                
+            // Up
+                if (resizing_dir = DIR_UP)
+                {    
+                    draw_line(x, y, x + (window_width * window_scale), y);
+                }
+                
+            // Down
+                if (resizing_dir = DIR_DOWN)
+                {    
+                    draw_line(x, y + (window_height * window_scale), x + (window_width * window_scale), y + (window_height * window_scale));
+                }
+        }
+            
     // Reset Alpha
         draw_set_alpha(1)
 </string>

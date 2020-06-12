@@ -11,7 +11,9 @@
     <sprite>sprites\spr_window_icons</sprite>
     <sprite>sprites\spr_window_close_icon</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_dashtest_cyberbg</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_generate_window.gml</script>
@@ -27,7 +29,7 @@
     <object>objects\obj_window_options</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\rm_tests</room>
   </rooms>
   <constants number="4">
     <constant name="DIR_UP">1</constant>

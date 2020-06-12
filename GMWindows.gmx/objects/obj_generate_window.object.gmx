@@ -25,14 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>/// Flags.
+global.win_in_focus = -1;
 image_speed = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="11">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -49,80 +50,65 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>image_index = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Generate Options Window
-    // Create Instance
-        var w_;
-        w_ = instance_create(x, y, obj_window_options)
-    
-    // Name
-        w_.window_name = "Options";
+            <string>/// Main Handle.
+// Check if mouse is inside.
+if (mouse_x &gt; bbox_left &amp;&amp; mouse_x &lt; bbox_right &amp;&amp; mouse_y &gt; bbox_top &amp;&amp; mouse_y &lt; bbox_bottom)
+{
+    // Frame.
+        // Change Mask to Dot Temporarely for better collision checking with the mouse.
+            var tempMask;
+            tempMask = mask_index;
+            mask_index = spr_dot;
         
-    // Icon
-        w_.window_icon = 1;
-    
-    // Size
-        w_.window_width = 128;
-        w_.window_height = 128;
-    
-    // Minimum Size
-        w_.min_window_width = 80;
-        w_.min_window_height = 64;
-    
-    // Options
-        w_.option[1] = "Continue"
-        w_.option[2] = "Reset"
-        w_.current_option = 1;
-        w_.option_max = 2;
-    
-    // Set focus
-        global.win_in_focus = w_.id;
-
+        // Check
+            if !instance_place(mouse_x, mouse_y, obj_window)
+            {
+                image_index = 1;
+            }
+            else
+            {
+                image_index = 0;
+            }
+        
+        // Revert.
+            mask_index = tempMask;
+        
+    // Click
+        if (mouse_check_button_pressed(mb_left) &amp;&amp; image_index == 1)
+        {
+            /// Generate Options Window
+                // Create Instance
+                    var w_;
+                    w_ = instance_create(x, y, obj_window_options)
+                
+                // Name
+                    w_.window_name = "Options";
+                    
+                // Icon
+                    w_.window_icon = 1;
+                
+                // Size
+                    w_.window_width = 128;
+                    w_.window_height = 128;
+                
+                // Minimum Size
+                    w_.min_window_width = 80;
+                    w_.min_window_height = 64;
+                
+                // Options
+                    w_.option[1] = "Continue"
+                    w_.option[2] = "Reset"
+                    w_.current_option = 1;
+                    w_.option_max = 2;
+                
+                // Set focus
+                    global.win_in_focus = w_.id;
+        }
+}
+else
+{
+    image_index = 0;
+}
 </string>
           </argument>
         </arguments>
