@@ -2,6 +2,12 @@
 ![image](/Media/GMWindows.png "image")
  Ever wanted to have Windows in your GameMaker game? Well now you can! Check out GMWindows, free to use.
 
+# Up, Down and all around!
+
+![moveresizegif](/Media/MovingResizing.gif "moveresizegif")
+
+GMWindows allows you to hold and resize the windows with ease, making the experience more accurate and similar to what you would expect from using windows in your computer.
+
 ![functiongif](/Media/Functions.gif "functiongif")
 
 # Multiple Functions!

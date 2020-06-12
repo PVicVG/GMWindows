@@ -138,7 +138,7 @@ draw_set_halign(fa_center);
 draw_set_color(c_white);
 draw_set_alpha(window_scale)
 
-draw_text(x + ((window_width * window_scale) / 2), y + 20 * window_scale, window_text + " " + string(window_width) + "- " + string(window_height));
+draw_text(x + ((window_width * window_scale) / 2), y + 20 * window_scale, window_text);
 
 draw_set_halign(fa_left);
 
