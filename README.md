@@ -5,6 +5,9 @@
 ![image](/Media/Functions.gif "image")
 ## Multiple Functions!
 GMWindows features three different kinds of Windows you can implement in your project, these being.
-> Option Menus. Useful for Menu Screens!
-> Message Boxes. Display messages in a fancy manner.
-> String Boxes. Get strings from the user. Useful for naming things!
+# Option Menu
+> Useful for Menu Screens!
+# Message Boxes.
+> Display messages in a fancy manner.
+# String Boxes
+> Get strings from the user. Useful for naming things!
