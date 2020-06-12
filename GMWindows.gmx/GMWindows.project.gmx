@@ -4,12 +4,18 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\ui_close</sound>
+    <sound>sound\ui_next</sound>
+    <sound>sound\ui_start</sound>
+    <sound>sound\ui_open</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_button</sprite>
     <sprite>sprites\spr_dot</sprite>
     <sprite>sprites\spr_window_icons</sprite>
     <sprite>sprites\spr_window_close_icon</sprite>
+    <sprite>sprites\spr_window_ok_icon</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_dashtest_cyberbg</background>
@@ -17,16 +23,21 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_generate_window.gml</script>
-    <script>scripts\update_option.gml</script>
     <script>scripts\draw_tooltip.gml</script>
+    <script>scripts\scr_string_copy_words.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_interface</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_generate_window</object>
-    <object>objects\obj_window</object>
-    <object>objects\obj_window_options</object>
+    <objects name="Window">
+      <object>objects\obj_window</object>
+      <objects name="Window Types">
+        <object>objects\obj_window_options</object>
+        <object>objects\obj_window_message</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tests</room>

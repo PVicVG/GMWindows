@@ -60,6 +60,9 @@
 // Offset. Used for when the window is being held.
     x_off = 0;
     y_off = 0;
+    
+// Play Sound
+    audio_play_sound(ui_open, 1, 0)
 </string>
           </argument>
         </arguments>
@@ -143,6 +146,7 @@ if global.win_in_focus == id
 
     if (mouse_check_button_pressed(mb_left) &amp;&amp; can_close)
     {
+        audio_play_sound(ui_close, 1, 0);
         fading = 1;
         global.win_in_focus = -1;
         exit;

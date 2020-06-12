@@ -73,7 +73,7 @@ if (mouse_x &gt; bbox_left &amp;&amp; mouse_x &lt; bbox_right &amp;&amp; mouse_y
         // Revert.
             mask_index = tempMask;
         
-    // Click
+    // Left Click - Option Window
         if (mouse_check_button_pressed(mb_left) &amp;&amp; image_index == 1)
         {
             /// Generate Options Window
@@ -101,6 +101,34 @@ if (mouse_x &gt; bbox_left &amp;&amp; mouse_x &lt; bbox_right &amp;&amp; mouse_y
                     w_.current_option = 1;
                     w_.option_max = 2;
                 
+                // Set focus
+                    global.win_in_focus = w_.id;
+        }
+        
+    // Right Click - Normal Window
+        if (mouse_check_button_pressed(mb_right) &amp;&amp; image_index == 1)
+        {
+            /// Generate Options Window
+                // Create Instance
+                    var w_;
+                    w_ = instance_create(x, y, obj_window_message)
+                
+                // Name
+                    w_.window_name = "Hello World";
+                    
+                // Icon
+                    w_.window_icon = 0;
+                
+                // Size
+                    w_.min_window_width = 288;
+                    w_.min_window_height = 128;
+                    
+                    w_.window_width = w_.min_window_width;
+                    w_.window_height = w_.min_window_height;
+                    
+                // Text
+                    w_.window_text = "Sup gamers.# I've come to make an announcement.#Jazz is the worst musical genre.#Future Funk is 1000x better.#Press [OK] if you agree."
+
                 // Set focus
                     global.win_in_focus = w_.id;
         }

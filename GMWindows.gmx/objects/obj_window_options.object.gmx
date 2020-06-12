@@ -68,6 +68,12 @@
                     
                     draw_set_alpha(1)
                     draw_set_color(c_yellow);
+                    
+                    if (current_option != i)
+                    {
+                        current_option = i
+                        audio_play_sound(ui_next, 1, 0);
+                    }
                 }
                 else
                 {
@@ -81,19 +87,7 @@
 
     // Reset Alpha
         draw_set_alpha(1)
-           
-    // Option Max and Min
-        // Go to the bottom
-            if (current_option &lt; 1) 
-            {
-                update_option(option_max);
-            }
-        
-        // Go to the top
-            if (current_option &gt; option_max)
-            {
-                update_option(1);
-            }
+
 </string>
           </argument>
         </arguments>
