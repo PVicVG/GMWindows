@@ -109,49 +109,14 @@
             }
             else
             {
+                if global.win_in_focus = id
+                {
+                    global.win_in_focus = -1;
+                }
+                
                 instance_destroy();
             }
         }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Close Window
-if global.win_in_focus == id
-{
-    if (mouse_x &gt; x - 12 - 4 + window_width) &amp;&amp; (mouse_x &lt; x - 4 + window_width) &amp;&amp; (mouse_y &gt; y + 2) &amp;&amp; (mouse_y &lt; y + 2 + 12)
-    {
-        can_close = true;
-    }
-    else
-    {
-        can_close = false;
-    }
-
-    if (mouse_check_button_pressed(mb_left) &amp;&amp; can_close)
-    {
-        audio_play_sound(ui_close, 1, 0);
-        fading = 1;
-        global.win_in_focus = -1;
-        exit;
-    }    
-}
 </string>
           </argument>
         </arguments>
@@ -194,7 +159,7 @@ if global.win_in_focus == id
         }
         
     // General
-        if (mouse_inside_y &amp;&amp; mouse_inside_x)
+        if (mouse_inside_y = true &amp;&amp; mouse_inside_x = true)
         {
             mouse_inside = true;
         }
@@ -418,9 +383,10 @@ image_yscale = window_height;
             }
         }
      // Click Outside of Window, set the focus.
-        if (global.win_in_focus == id &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !mouse_inside &amp;&amp; !resizing &amp;&amp; !held)
+        if (global.win_in_focus == id &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; mouse_inside = false &amp;&amp; resizing = false &amp;&amp; held = false)
         {
             global.win_in_focus = -1;
+            exit;
         }
         
     // Set Focus to Self
@@ -438,6 +404,46 @@ image_yscale = window_height;
                  global.win_in_focus = id;
             }
         }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Close Window
+if global.win_in_focus == id
+{
+    if (mouse_x &gt; x - 12 - 4 + window_width) &amp;&amp; (mouse_x &lt; x - 4 + window_width) &amp;&amp; (mouse_y &gt; y + 2) &amp;&amp; (mouse_y &lt; y + 2 + 12)
+    {
+        can_close = true;
+    }
+    else
+    {
+        can_close = false;
+    }
+
+    if (mouse_check_button_pressed(mb_left) &amp;&amp; can_close)
+    {
+        audio_play_sound(ui_close, 1, 0);
+        fading = 1;
+        global.win_in_focus = -1;
+        exit;
+    }    
+}
 </string>
           </argument>
         </arguments>

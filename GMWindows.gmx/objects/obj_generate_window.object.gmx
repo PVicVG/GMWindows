@@ -28,6 +28,8 @@
             <string>/// Flags.
 global.win_in_focus = -1;
 image_speed = 0;
+custom_string = "Sample Text";
+custom_string_color = c_white;
 </string>
           </argument>
         </arguments>
@@ -88,18 +90,27 @@ if (mouse_x &gt; bbox_left &amp;&amp; mouse_x &lt; bbox_right &amp;&amp; mouse_y
                     w_.window_icon = 1;
                 
                 // Size
-                    w_.window_width = 128;
+                    w_.window_width = 168;
                     w_.window_height = 128;
                 
                 // Minimum Size
-                    w_.min_window_width = 80;
+                    w_.min_window_width = 168;
                     w_.min_window_height = 64;
                 
                 // Options
-                    w_.option[1] = "Continue"
-                    w_.option[2] = "Reset"
-                    w_.current_option = 1;
-                    w_.option_max = 2;
+                    w_.option[1] = "Center Window";
+                    w_.option_action[1] = 1;
+                    
+                    w_.option[2] = "Restart";
+                    w_.option_action[2] = 2;
+                    
+                    w_.option[3] = "Change Color of Sample Text";
+                    w_.option_action[3] = 3;
+                    
+                    w_.option_max = 3;
+                    
+                // Target
+                    w_.target_object = id;
                 
                 // Set focus
                     global.win_in_focus = w_.id;
@@ -128,6 +139,40 @@ if (mouse_x &gt; bbox_left &amp;&amp; mouse_x &lt; bbox_right &amp;&amp; mouse_y
                     
                 // Text
                     w_.window_text = "Sup gamers.# I've come to make an announcement.#Jazz is the worst musical genre.#Future Funk is 1000x better.#Press [OK] if you agree."
+                    
+                // Target
+                    w_.target_object = id;
+
+                // Set focus
+                    global.win_in_focus = w_.id;
+        }
+        
+  // Middle Click - Insert String
+        if (mouse_check_button_pressed(mb_middle) &amp;&amp; image_index == 1)
+        {
+            /// Generate Options Window
+                // Create Instance
+                    var w_;
+                    w_ = instance_create(x, y, obj_window_string_insert)
+                
+                // Name
+                    w_.window_name = "Insert a string";
+                    
+                // Icon
+                    w_.window_icon = 0;
+                
+                // Size
+                    w_.min_window_width = 288;
+                    w_.min_window_height = 128;
+                    
+                    w_.window_width = w_.min_window_width;
+                    w_.window_height = w_.min_window_height;
+                    
+                // Text
+                    w_.window_text = "Please insert some epic text#in the textbox below."
+                    
+                // Target
+                    w_.target_object = id;
 
                 // Set focus
                     global.win_in_focus = w_.id;
@@ -159,13 +204,18 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self()
+            <string>/// Draw
+draw_self()
 
 // Draw Tooltip
 if image_index == 1
 {
-    draw_tooltip("Left Click - Option Window#Right Click - Normal Window",floor(mouse_x),floor(mouse_y),fnt_interface)
+    draw_tooltip("Left Click - Option Window#Right Click - Normal Window#Middle Click - Insert String",floor(mouse_x),floor(mouse_y),fnt_interface)
 }
+
+// Custom String.
+draw_set_color(custom_string_color)
+draw_text(0,0,custom_string)
 </string>
           </argument>
         </arguments>

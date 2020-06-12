@@ -9,6 +9,8 @@
     <sound>sound\ui_next</sound>
     <sound>sound\ui_start</sound>
     <sound>sound\ui_open</sound>
+    <sound>sound\ui_click</sound>
+    <sound>sound\ui_alert</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_button</sprite>
@@ -22,9 +24,7 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_generate_window.gml</script>
     <script>scripts\draw_tooltip.gml</script>
-    <script>scripts\scr_string_copy_words.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_interface</font>
@@ -36,6 +36,7 @@
       <objects name="Window Types">
         <object>objects\obj_window_options</object>
         <object>objects\obj_window_message</object>
+        <object>objects\obj_window_string_insert</object>
       </objects>
     </objects>
   </objects>
