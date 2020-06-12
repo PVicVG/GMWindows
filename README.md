@@ -8,9 +8,10 @@
 
 GMWindows allows you to hold and resize the windows with ease, making the experience more accurate and similar to what you would expect from using windows in your computer.
 
+# Multiple Functions!
+
 ![functiongif](/Media/Functions.gif "functiongif")
 
-# Multiple Functions!
 GMWindows features three different kinds of Windows you can implement in your project,
 these being.
 
