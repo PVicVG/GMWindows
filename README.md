@@ -1,6 +1,7 @@
 # GMWindows
 ![image](/Media/GMWindows.png "image")
  Ever wanted to have Windows in your GameMaker game? Well now you can! Check out GMWindows, free to use.
+Make sure to check https://github.com/ebPedroVG/GMWindows.wiki.git for further documentation.
 
 # Up, Down and all around!
 
